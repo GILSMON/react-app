@@ -1,33 +1,32 @@
-import React from "react";
+import React,{useState, useEffect } from "react";
 
-class User2 extends React.Component {
+const User2 = (props) => {
 
-    constructor (props) {
-        super(props);
+    // state
+    const [planet, setPlanet] = useState("earth");  //useState return an array
+   // componentDidMount
+    useEffect(() => {
+        console.log("component mounting");
+        // componentWillUnmount
+        return console.log("bye bye");  // first return statement is executed
+    },[]);
 
-        // create a state
-        this.state = {
-            planet : "earth",
-        };
-        console.log("constructor");
-    }
-
-    componentDidMount() {
-        this.setState({planet: "Mars"}); 
-        // change the state earth to mars when component is created
-    }
-    render(){
-        console.log("render");
-        return (
-            <div>
-                <h1>{this.props.name}</h1>
-                <p>{this.props.description}</p>
-                <h4>{this.state.planet} </h4>
-            </div>
-        );
-        
-        
-    }
-}
+    // componentDidUpdate
+    // shouldComponentUpdate
+    useEffect(() => {
+        console.log("planet change");
+    },[planet]);
+    
+    return (
+        <div>
+            <h1>{props.name}</h1>
+            <p>{props.description}</p>
+            <button onClick={() => setPlanet("pluto")}>
+                {planet}
+            </button>
+            
+        </div>
+    );  
+};
 
 export default User2;

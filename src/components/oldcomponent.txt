@@ -1,0 +1,97 @@
+import React from "react";
+
+class User2 extends React.Component {
+
+    constructor (props) {
+        super(props);
+
+        // create a state
+        this.state = {
+            planet : "earth",
+        };
+        console.log("constructor");
+    }
+
+    componentDidMount() {
+        this.setState({planet: "Mars"}); 
+        // change the state earth to mars when component is created
+    }
+    render(){
+        console.log("render");
+        return (
+            <div>
+                <h1>{this.props.name}</h1>
+                <p>{this.props.description}</p>
+                <h4>{this.state.planet} </h4>
+            </div>
+        );
+        
+        
+    }
+}
+
+export default User2;
+
+/*end*/
+// class based components 
+import React from "react";
+
+class User2 extends React.Component {
+
+    constructor (props) {
+        super(props);
+
+        // create a state
+        this.state = {
+            planet : "earth",
+        };
+        console.log("constructor");
+    }
+
+    // static getDerivedStateFromProps(props, state) {
+    //     console.log("from getDerivedStateFromProps")  // some problems
+    //     return {planet: "JUPITER"};
+    // }
+
+    shouldComponentUpdate(nextProp,nextState) {
+        console.log ({
+            nextProp,
+            nextState,
+        });
+        console.log ("from shouldComponentUpdate");
+        return true;
+    }
+
+    componentDidMount() {
+        this.setState({planet: "jupiter"});
+    }
+
+
+
+    getSnapshotBeforeUpdate(prevProp,prevState) {
+        console.log({prevProp,prevState});
+        console.log ("from getSnapshotBeforeUpdate");
+        return true;
+    }
+
+    componentDidUpdate() {
+        console.log(this.state);
+        console.log ("from componentDidUpdate");
+    }
+
+
+    render(){
+        console.log("render");
+        return (
+            <div>
+                <h1>{this.props.name}</h1>
+                <p>{this.props.description}</p>
+                <h4>{this.state.planet} </h4>
+            </div>
+        );
+        
+        
+    }
+}
+
+export default User2;
